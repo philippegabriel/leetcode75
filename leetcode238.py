@@ -39,5 +39,5 @@ class Solution:
 
 if __name__ == "__main__":
     s=Solution()
-    print(s.productExceptSelf([1,2,3,4]))
-    print(s.productExceptSelf([-1,1,0,-3,3]))
+    assert s.productExceptSelf([1,2,3,4]) == [24,12,8,6]
+    assert s.productExceptSelf([-1,1,0,-3,3]) == [0,0,9,0,0]
