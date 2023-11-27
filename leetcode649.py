@@ -45,13 +45,12 @@ And in round 2, the third senator can just announce the victory since he is the 
 the senate who can vote.
 '''
 from collections import deque
+from typing import Deque
 class Solution:
-    """solution for leetcode 649"""
     # pylint: disable-next=invalid-name
     def predictPartyVictory(self, senate: str) -> str:
-        """solution for leetcode 649"""
-        l:deque[str]  = deque(senate)
-        l2:deque[str] = deque([])
+        l:Deque[str]  = deque(senate)
+        l2:Deque[str] = deque([])
         num_r: int=l.count('R')
         num_d: int=l.count('D')
         while True:
@@ -60,21 +59,19 @@ class Solution:
                 if c == 'R':
                     if num_d == 0:
                         return 'Radiant'
-                    else:
-                        try:
-                            l.remove('D')
-                        except ValueError:
-                            l2.remove('D')
-                        num_d-=1
+                    try:
+                        l.remove('D')
+                    except ValueError:
+                        l2.remove('D')
+                    num_d-=1
                 else:
                     if num_r == 0:
                         return 'Dire'
-                    else:
-                        try:
-                            l.remove('R')
-                        except ValueError:
-                            l2.remove('R')
-                        num_r-=1
+                    try:
+                        l.remove('R')
+                    except ValueError:
+                        l2.remove('R')
+                    num_r-=1
                 l2.append(c)
             l=l2
 

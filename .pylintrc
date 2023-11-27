@@ -1,0 +1,4 @@
+[BASIC]
+disable = missing-class-docstring, missing-function-docstring
+[DESIGN]
+disable = too-few-public-methods

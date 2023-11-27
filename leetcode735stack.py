@@ -20,16 +20,15 @@ Output: []
 Input: asteroids = [10,2,-5]
 Output: [10]
 '''
+from typing import List
 class Solution:
-    """solution for leetcode 735"""
     # pylint: disable-next=invalid-name
-    def asteroidCollision(self, asteroids: list[int]) -> list[int]:
-        """solution for leetcode 735"""
-        stack: list[int] = []
+    def asteroidCollision(self, asteroids: List[int]) -> List[int]:
+        stack: List[int] = []
 
         for asteroid in asteroids:
             # Keep checking for collisions until the stack is empty or no collision occurs
-            while stack and asteroid < 0 and stack[-1] > 0:
+            while stack and asteroid < 0 < stack[-1]:
                 if stack[-1] < abs(asteroid):
                     # The current asteroid exploded the smaller one on top of the stack
                     stack.pop()

@@ -15,13 +15,11 @@ Output: [0,0,9,0,0]
 '''
 from typing import List
 class Solution:
-    """solution for leetcode 238"""
     # pylint: disable-next=invalid-name
     def productExceptSelf(self, nums: List[int]) -> List[int]:
-        """solution for leetcode 238"""
-        result:list[int] = []
-        prodcons: list[int] = [1]
-        prodcdr:list[int] = [1]
+        result:List[int] = []
+        prodcons: List[int] = [1]
+        prodcdr:List[int] = [1]
         pred:int=1
         for i in nums[:-1]:
             pred *= i

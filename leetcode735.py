@@ -22,26 +22,23 @@ Output: [10]
 '''
 from typing import List, Optional
 class Solution:
-    """solution for leetcode 735"""
     def does_collide(self, x:int, y:int)->bool:
         """ tests if collision occurs"""
-        return x>0 and y<0
+        return y<0<x
     def collide(self, x:int, y:int) -> Optional[int]:
         """ effects a collision """
-        assert x>0 and y<0
+        assert y<0<x
         sum_collide = x+y
         if sum_collide == 0:
             return None
-        elif sum_collide < 0:
+        if sum_collide < 0:
             return y
-        else:
-            return x
+        return x
     # pylint: disable-next=invalid-name
     def asteroidCollision(self, asteroids: List[int]) -> List[int]:
-        """solution for leetcode 735"""
         found:bool = True
         while found:
-            tmp: list[int] = []
+            tmp: List[int] = []
             found = False
             i:int = 0
             j:Optional[int]=None
@@ -59,7 +56,6 @@ class Solution:
 
 if __name__ == "__main__":
     s=Solution()
-    print(s.asteroidCollision([5,10,-5]))
-    print(s.asteroidCollision([8,-8]))
-    print(s.asteroidCollision([10,2,-5]))
-    print(s.asteroidCollision([5,-5,-4,8,-9]))
+    assert s.asteroidCollision([5,10,-5]) == [5, 10]
+    assert not s.asteroidCollision([8,-8])
+    assert s.asteroidCollision([10,2,-5]) == [10]

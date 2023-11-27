@@ -12,11 +12,10 @@ Input: nums = [0]
 Output: [0]
 
 '''
-from typing import Optional
+from typing import List, Optional
 class Solution:
-    """solution for leetcode 238"""
     # pylint: disable-next=invalid-name
-    def moveZeroes(self, nums: list[int]) -> None:
+    def moveZeroes(self, nums: List[int]) -> None:
         """
         Do not return anything, modify nums in-place instead.
         """

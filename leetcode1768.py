@@ -6,6 +6,7 @@ append the additional letters onto the end of the merged string.
 Return the merged string.
 '''
 class Solution:
+    # pylint: disable-next=invalid-name
     def mergeAlternately(self, word1: str, word2: str) -> str:
         result: str = ''
         i:int =0

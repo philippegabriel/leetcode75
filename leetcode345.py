@@ -12,12 +12,11 @@ Example 2:
 Input: s = "leetcode"
 Output: "leotcede"
 '''
+from typing import Set
 class Solution:
-    """solution for leetcode 345"""
-    vowelset:set[str] = {'a','e','i','o','u', 'A', 'E', 'I', 'O', 'U'}
+    vowelset:Set[str] = {'a','e','i','o','u', 'A', 'E', 'I', 'O', 'U'}
     # pylint: disable-next=[invalid-name, redefined-outer-name]
     def reverseVowels(self, s: str) -> str:
-        """solution for leetcode 345"""
         lp:int = 0
         rp:int = len(s) -1
         try:

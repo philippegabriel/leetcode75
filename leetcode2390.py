@@ -27,9 +27,11 @@ Example 2:
 Input: s = "erase*****"
 Output: ""
 '''
+from typing import List
 class Solution:
+    # pylint: disable-next=[invalid-name, redefined-outer-name]
     def removeStars(self, s: str) -> str:
-        stack:list[str] = []
+        stack:List[str] = []
         for i in s:
             if i == '*':
                 stack.pop()

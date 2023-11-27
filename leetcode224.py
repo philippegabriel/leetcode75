@@ -19,10 +19,8 @@ Output: 23
 import operator
 
 class Solution:
-    """solution for leetcode 224"""
     # pylint: disable-next=redefined-outer-name
     def calculate(self, s:str) -> int:
-        """solution for leetcode 224"""
         #Strip all space
         s2 = s.replace(" ","")
         stack = list([])
@@ -65,16 +63,15 @@ class Solution:
 if __name__ == "__main__":
     import textwrap
     s=Solution()
-    f = open("./leetcode224.testcases.csv", "r", encoding="utf-8")
-    #testcases = ["1 + 1", " 2-1 + 2 ", "(1+(4+5+2)-3)+(6+8)", "1-(     -2)"]
-    testcases = [line.rstrip() for line in f]
-    for testcase in testcases:
-        TCSTRING = textwrap.shorten(testcase, width=30, placeholder="...")
-        print(f'calculate("{TCSTRING}")={s.calculate(testcase)}')
-        try:
-            #LC last test case, seems to break built-in eval
-            # pylint: disable-next=eval-used
-            assert s.calculate(testcase) == eval(testcase)
-        # pylint: disable-next=bare-except
-        except:
-            pass
+    with open("./leetcode224.testcases.csv", "r", encoding="utf-8") as f:
+        testcases = [line.rstrip() for line in f]
+        for testcase in testcases:
+            TCSTRING = textwrap.shorten(testcase, width=30, placeholder="...")
+            print(f'calculate("{TCSTRING}")={s.calculate(testcase)}')
+            try:
+                #LC last test case, seems to break built-in eval
+                # pylint: disable-next=eval-used
+                assert s.calculate(testcase) == eval(testcase)
+            # pylint: disable-next=bare-except
+            except:
+                pass
