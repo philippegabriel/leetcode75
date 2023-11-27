@@ -22,23 +22,26 @@ Explanation: The smallest positive integer 1 is missing.
 import heapq
 from typing import List
 class Solution:
+    """solution for leetcode 41"""
+    # pylint: disable-next=invalid-name
     def firstMissingPositive(self, nums: List[int]) -> int:
+        """solution for leetcode 41"""
         hq = []
         for i in nums:
             heapq.heappush(hq,i)
-        i = 0
-        j = -1
+        i:int = 0
+        j:int = -1
         while j < 1:
             try:
                 j = heapq.heappop(hq)
-            except:
+            except IndexError:
                 return 1
         # i=0,j >= 1
         while j - i <= 1:
             i = j
             try:
                 j = heapq.heappop(hq)
-            except:
+            except IndexError:
                 break
         return i+1
 

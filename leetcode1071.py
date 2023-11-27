@@ -23,21 +23,25 @@ str1 and str2 consist of English uppercase letters.
 '''
 from math import gcd
 class Solution:
-    def smallestPattern(self, str: str) -> str:
-        #Find the smallest repeating pattern
-        len1:int = len(str)
+    """solution for leetcode 735"""
+    # pylint: disable-next=redefined-outer-name
+    def smallest_pattern(self, s: str) -> str:
+        """Find the smallest repeating pattern"""
+        len1:int = len(s)
         i:int=1
         nrep:int = 0
         while i < len1:
             nrep:int = int(len1/i)
             # can len(str) divide by i?
-            if len1 % i == 0 and str[0:i] * nrep == str:
+            if len1 % i == 0 and s[0:i] * nrep == s:
                 break
             i+=1
         # str[0:i] is the smallest repeating pattern
-        return str[0:i]
+        return s[0:i]
 
+    # pylint: disable-next=invalid-name
     def gcdOfStrings(self, str1: str, str2: str) -> str:
+        """solution for leetcode 735"""
         # Deal with outliers
         if len(str1) == 0 or len(str2) == 0:
             return ''
@@ -46,25 +50,25 @@ class Solution:
         # Find min len string
         len1,len2 = len(str1), len(str2)
         if len1>len2:
-            minStr, maxStr = str2, str1
-            minLen, maxLen = len2, len1
+            min_str, max_str = str2, str1
+            min_len, max_len = len2, len1
         else:
-            minStr, maxStr = str1, str2
-            minLen, maxLen = len1, len2
+            min_str, max_str = str1, str2
+            min_len, max_len = len1, len2
         #Find minimal pattern in minStr
-        pattern: str = self.smallestPattern(minStr)
+        pattern: str = self.smallest_pattern(min_str)
         patlen = len(pattern)
         # Check maxStr len can be divide by pattern len
-        if maxLen % patlen != 0:
+        if max_len % patlen != 0:
             return ""
         # Check if maxStr is a repeat of pattern
-        maxRep: int = int(maxLen / patlen)
-        if maxStr != pattern * maxRep:
+        max_rep: int = int(max_len / patlen)
+        if max_str != pattern * max_rep:
             return ""
         #Find gcd of maxrep, minRep
-        minRep: int = int(minLen / patlen)
-        gcdRep: int = gcd(minRep, maxRep) 
-        return pattern * gcdRep
+        min_rep: int = int(min_len / patlen)
+        gcd_rep: int = gcd(min_rep, max_rep)
+        return pattern * gcd_rep
 
 if __name__ == "__main__":
     s=Solution()
@@ -73,4 +77,3 @@ if __name__ == "__main__":
     print(f'gcdOfStrings("ABCBAC","ABC")=>{s.gcdOfStrings("ABCBAC","ABC")}')
     print(s.gcdOfStrings("CDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACA",
                                      "CDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACACDDCADCCDDBABCCCDACA"))
-

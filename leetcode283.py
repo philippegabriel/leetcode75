@@ -14,32 +14,36 @@ Output: [0]
 '''
 from typing import Optional
 class Solution:
+    """solution for leetcode 238"""
+    # pylint: disable-next=invalid-name
     def moveZeroes(self, nums: list[int]) -> None:
         """
         Do not return anything, modify nums in-place instead.
         """
         fz:Optional[int] = None
         nz: int = 0
-        lnumsRange = range(len(nums))
-        for i in lnumsRange:
-            if nums[i] == 0:
+        for i,num in enumerate(nums):
+            if num == 0:
                 if nz == 0:
                     fz = i
                 nz += 1
             elif nz != 0:
-                assert fz != None
-                nums[fz] = nums[i]
+                assert fz is not None
+                nums[fz] = num
                 nums[i] = 0
                 fz = i + 1 - nz
-        
+
 if __name__ == "__main__":
     s=Solution()
-    inputs = [
-        [0,0,1,1,0,1],
-        [0,1,0,3,12]
-        ]
-    for i in inputs:       
-        print(f"moveZeroes({i}) =>",end='')
-        s.moveZeroes(i)
-        print(i)
 
+    input_list = [0,0,1,1,0,1]
+    print(f"moveZeroes({input_list}) =>",end='')
+    s.moveZeroes(input_list)
+    print(input_list)
+    assert input_list == [1,1,1,0,0,0]
+
+    input_list = [0,1,0,3,12]
+    print(f"moveZeroes({input_list}) =>",end='')
+    s.moveZeroes(input_list)
+    print(input_list)
+    assert input_list == [1,3,12,0,0]

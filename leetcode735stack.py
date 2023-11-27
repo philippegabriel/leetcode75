@@ -1,9 +1,14 @@
 '''
 We are given an array asteroids of integers representing asteroids in a row.
 
-For each asteroid, the absolute value represents its size, and the sign represents its direction (positive meaning right, negative meaning left). Each asteroid moves at the same speed.
+For each asteroid, the absolute value represents its size,
+and the sign represents its direction (positive meaning right, negative meaning left).
+Each asteroid moves at the same speed.
 
-Find out the state of the asteroids after all collisions. If two asteroids meet, the smaller one will explode. If both are the same size, both will explode. Two asteroids moving in the same direction will never meet.
+Find out the state of the asteroids after all collisions.
+If two asteroids meet, the smaller one will explode.
+If both are the same size, both will explode.
+Two asteroids moving in the same direction will never meet.
 
 Example 1:
 Input: asteroids = [5,10,-5]
@@ -16,7 +21,10 @@ Input: asteroids = [10,2,-5]
 Output: [10]
 '''
 class Solution:
+    """solution for leetcode 735"""
+    # pylint: disable-next=invalid-name
     def asteroidCollision(self, asteroids: list[int]) -> list[int]:
+        """solution for leetcode 735"""
         stack: list[int] = []
 
         for asteroid in asteroids:
@@ -36,7 +44,7 @@ class Solution:
                 # No collision occurred, or the stack is empty
                 stack.append(asteroid)
 
-        return stack    
+        return stack
 if __name__ == "__main__":
     s=Solution()
     print(s.asteroidCollision([5,10,-5]))

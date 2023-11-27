@@ -1,9 +1,14 @@
 '''
 We are given an array asteroids of integers representing asteroids in a row.
 
-For each asteroid, the absolute value represents its size, and the sign represents its direction (positive meaning right, negative meaning left). Each asteroid moves at the same speed.
+For each asteroid, the absolute value represents its size,
+and the sign represents its direction (positive meaning right, negative meaning left).
+Each asteroid moves at the same speed.
 
-Find out the state of the asteroids after all collisions. If two asteroids meet, the smaller one will explode. If both are the same size, both will explode. Two asteroids moving in the same direction will never meet.
+Find out the state of the asteroids after all collisions.
+If two asteroids meet, the smaller one will explode.
+If both are the same size, both will explode.
+Two asteroids moving in the same direction will never meet.
 
 Example 1:
 Input: asteroids = [5,10,-5]
@@ -17,18 +22,23 @@ Output: [10]
 '''
 from typing import List, Optional
 class Solution:
-    def doesColide(self, x:int, y:int)->bool:
+    """solution for leetcode 735"""
+    def does_collide(self, x:int, y:int)->bool:
+        """ tests if collision occurs"""
         return x>0 and y<0
     def collide(self, x:int, y:int) -> Optional[int]:
+        """ effects a collision """
         assert x>0 and y<0
-        sumCollide = x+y
-        if sumCollide == 0:
+        sum_collide = x+y
+        if sum_collide == 0:
             return None
-        elif sumCollide < 0:
+        elif sum_collide < 0:
             return y
         else:
             return x
+    # pylint: disable-next=invalid-name
     def asteroidCollision(self, asteroids: List[int]) -> List[int]:
+        """solution for leetcode 735"""
         found:bool = True
         while found:
             tmp: list[int] = []
@@ -36,7 +46,7 @@ class Solution:
             i:int = 0
             j:Optional[int]=None
             while i<len(asteroids):
-                if i != len(asteroids)-1 and self.doesColide(asteroids[i], asteroids[i+1]):
+                if i != len(asteroids)-1 and self.does_collide(asteroids[i], asteroids[i+1]):
                     if j:= self.collide(asteroids[i], asteroids[i+1]):
                         tmp.append(j)
                     found = True
@@ -46,7 +56,7 @@ class Solution:
                     i+=1
             asteroids = tmp[:]
         return asteroids
-    
+
 if __name__ == "__main__":
     s=Solution()
     print(s.asteroidCollision([5,10,-5]))

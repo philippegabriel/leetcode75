@@ -1,22 +1,28 @@
-#224. Basic Calculator
-#Hard
-#Given a string s representing a valid expression, implement a basic calculator to evaluate it, and return the result of the evaluation.
-#Example 1:
-#Input: s = "1 + 1"
-#Output: 2
+'''
+224. Basic Calculator
+Hard
+Given a string s representing a valid expression,
+implement a basic calculator to evaluate it, and return the result of the evaluation.
 
-#Example 2:
-#Input: s = " 2-1 + 2 "
-#Output: 3
+Example 1:
+Input: s = "1 + 1"
+Output: 2
 
-#Example 3:
-#Input: s = "(1+(4+5+2)-3)+(6+8)"
-#Output: 23
+Example 2:
+Input: s = " 2-1 + 2 "
+Output: 3
 
+Example 3:
+Input: s = "(1+(4+5+2)-3)+(6+8)"
+Output: 23
+'''
 import operator
 
 class Solution:
+    """solution for leetcode 224"""
+    # pylint: disable-next=redefined-outer-name
     def calculate(self, s:str) -> int:
+        """solution for leetcode 224"""
         #Strip all space
         s2 = s.replace(" ","")
         stack = list([])
@@ -28,7 +34,6 @@ class Solution:
             if i in "0123456789":
                 digitstream = True
                 curnum = curnum * 10 + int(i)
-                #print(f"enter i={i}, curnum={curnum}, acc={acc}, curop={curop}, stack={stack}")
                 continue
             #end of digit stream, update acc
             if digitstream:
@@ -36,7 +41,6 @@ class Solution:
                 curnum = 0
                 curop = None
                 digitstream = False
-                #print(f"leave digistream i={i}, curnum={curnum}, acc={acc}, curop={curop}, stack={stack}")
             # operators
             if i == "+":
                 curop = operator.add
@@ -59,17 +63,18 @@ class Solution:
         return acc
 
 if __name__ == "__main__":
-    import textwrap    
+    import textwrap
     s=Solution()
-    f = open("./leetcode224.testcases.csv", "r")
+    f = open("./leetcode224.testcases.csv", "r", encoding="utf-8")
     #testcases = ["1 + 1", " 2-1 + 2 ", "(1+(4+5+2)-3)+(6+8)", "1-(     -2)"]
     testcases = [line.rstrip() for line in f]
     for testcase in testcases:
-        tcstring = textwrap.shorten(testcase, width=30, placeholder="...")
-        #print(f'calculate("{tcstring}")')
-        print(f'calculate("{tcstring}")={s.calculate(testcase)}')
+        TCSTRING = textwrap.shorten(testcase, width=30, placeholder="...")
+        print(f'calculate("{TCSTRING}")={s.calculate(testcase)}')
         try:
             #LC last test case, seems to break built-in eval
-            print(f'eval("{tcstring}")={eval(testcase)}')
+            # pylint: disable-next=eval-used
+            assert s.calculate(testcase) == eval(testcase)
+        # pylint: disable-next=bare-except
         except:
             pass

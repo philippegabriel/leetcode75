@@ -1,23 +1,24 @@
 '''
 Given a string s, reverse only all the vowels in the string and return it.
 
-The vowels are 'a', 'e', 'i', 'o', and 'u', and they can appear in both lower and upper cases, more than once.
-
- 
+The vowels are 'a', 'e', 'i', 'o', and 'u', and they can appear in both lower and upper cases,
+more than once.
 
 Example 1:
-
 Input: s = "hello"
 Output: "holle"
-Example 2:
 
+Example 2:
 Input: s = "leetcode"
 Output: "leotcede"
 '''
 class Solution:
+    """solution for leetcode 345"""
     vowelset:set[str] = {'a','e','i','o','u', 'A', 'E', 'I', 'O', 'U'}
+    # pylint: disable-next=[invalid-name, redefined-outer-name]
     def reverseVowels(self, s: str) -> str:
-        lp:int = 0 
+        """solution for leetcode 345"""
+        lp:int = 0
         rp:int = len(s) -1
         try:
             while rp > lp:
