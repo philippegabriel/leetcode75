@@ -42,9 +42,11 @@ class Solution:
             except IndexError:
                 break
         return i+1
-
-if __name__ == "__main__":
+def test() -> None:
     s=Solution()
     assert s.firstMissingPositive([1,2,0]) == 3
     assert s.firstMissingPositive([3,4,-1,1]) == 2
     assert s.firstMissingPositive([7,8,9,11,12]) == 1
+
+if __name__ == "__main__":
+    test()
