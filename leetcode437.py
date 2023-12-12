@@ -17,22 +17,7 @@ Input: root = [5,4,8,11,null,13,4,7,2,null,null,5,1], targetSum = 22
 Output: 3
 '''
 from typing import Optional
-# Definition for a binary tree node.
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
-
-def build_tree(tree: list[int], index: int = 0) -> Optional[TreeNode]:
-    try:
-        val = tree[index]
-        if val is None:
-            return None
-    except IndexError:
-        return None
-    #print(f"TreeNode({val=}, build_tree({2*index+1}), build_tree({2*index+2}))")
-    return TreeNode(val, build_tree(tree, 2 * index + 1), build_tree(tree, 2 * index + 2))
+from treenode import TreeNode, build_tree
 
 class Solution:
     # pylint: disable-next=invalid-name
@@ -42,11 +27,16 @@ class Solution:
         self.path_sum_acc(root, targetSum, path_set, path_seen)
         return len(path_set)
 
-    def path_sum_acc(self, root: Optional[TreeNode], target_sum: int, path_set:set[tuple[TreeNode, TreeNode]], path_seen:set[tuple[TreeNode, TreeNode]], valroot:int = None, acc:int =0) -> None:
+    def path_sum_acc(self, root: Optional[TreeNode],
+                     target_sum: int,
+                     path_set:set[tuple[TreeNode, TreeNode]],
+                     path_seen:set[tuple[TreeNode, TreeNode]],
+                     valroot:Optional[int]=None,
+                     acc:int =0) -> None:
         if root is None:
             return
         if valroot is None:
-            valroot = root
+            valroot = root.val
         path=tuple((valroot, root))
         if path in path_seen:
             return
@@ -68,7 +58,9 @@ def test() -> None:
     assert s.pathSum(root, 8) == 3
     root = build_tree([5,4,8,11,None,13,4,7,2,None,None,5,1])
     assert s.pathSum(root, 22) == 3
-    root = build_tree([1,None,2,None,None,None,3,None,None,None,None,None,None,None,4,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,5])
+    root = build_tree([1,None,2,None,None,None,3,None,None,None,
+                       None,None,None,None,4,None,None,None,None,None,None,None,None,
+                       None,None,None,None,None,None,None,5])
     assert s.pathSum(root, 3) == 2
     root = build_tree([0,1,1])
     assert s.pathSum(root, 1) == 4

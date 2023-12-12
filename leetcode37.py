@@ -59,14 +59,13 @@ class Sudoku():
         super().__init__()
         self.finished: bool=False
         self.board:Board = board
-        self.all_values:frozenset[str] = frozenset(['1','2','3','4','5','6','7','8','9'])
+        self.all_values:frozenset[str] = frozenset([str(i) for i in range(1,10)])
         # Init constraint sets from the board
         self.constraint_rows = [set(i) for i in board]
         self.constraint_cols = \
-            [set([board[row][col] for row in range(9)])\
-                for col in range(9)]
+            [{board[row][col] for row in range(9)} for col in range(9)]
         self.constraint_sq:dict[tuple[int,int],set[str]] = \
-            {(row,col):set([]) for col in range(3) for row in range(3)}
+            {(row,col):set() for col in range(3) for row in range(3)}
         i:Index = Index((0,0,(0,0)))
         while True:
             row,col,sq = i
@@ -105,7 +104,6 @@ class Sudoku():
         #print(f'unconst {candidates=}')
         return (False,candidates)
 
-
     def make_move(self, guess:str, row:int, col: int, sq: tuple[int,int]) -> None:
         #row,col,sq = i
         #commit the move
@@ -113,7 +111,6 @@ class Sudoku():
         self.constraint_rows[row].add(guess)
         self.constraint_cols[col].add(guess)
         self.constraint_sq[sq].add(guess)
-        return
 
     def unmake_move(self, guess:str,  row:int, col: int, sq: tuple[int,int]) -> None:
         #row,col,sq = i

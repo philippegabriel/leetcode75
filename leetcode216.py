@@ -48,13 +48,11 @@ class Solution:
 
     def backtrack(self, k:int, n: int, acc: set[int]):
         if n < 0:
-             return
+            return
         if n==0:
             if k == 0:
                 self.result.add(frozenset(acc))
-                return
-            else:
-                return
+            return
         for i in [i for i in range(1,10) if i not in acc]:
             self.backtrack(k-1, n-i, acc | {i})
 

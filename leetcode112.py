@@ -27,23 +27,7 @@ Output: false
 Explanation: Since the tree is empty, there are no root-to-leaf paths.
 '''
 from typing import Optional
-# Definition for a binary tree node.
-class TreeNode:
-    def __init__(self, val:int=0, left:Optional['TreeNode']=None, right:Optional['TreeNode']=None):
-        self.val = val
-        self.left = left
-        self.right = right
-
-def build_tree(tree: list[int], index: int = 0) -> Optional[TreeNode]:
-    try:
-        val = tree[index]
-        if val == 0:
-            return None
-    except IndexError:
-        return None
-    #print(f"TreeNode({val=}, build_tree({2*index+1}), build_tree({2*index+2}))")
-    return TreeNode(val, build_tree(tree, 2 * index + 1), build_tree(tree, 2 * index + 2))
-
+from treenode import TreeNode, build_tree
 class Solution:
     # pylint: disable-next=invalid-name
     def hasPathSum(self, root: Optional[TreeNode], target_sum: int) -> bool:
@@ -68,7 +52,7 @@ def test() -> None:
     assert not s.hasPathSum(root, 5)
     #Input: root = [5,4,8,11,null,13,4,7,2,null,null,null,1], targetSum = 22
     #Output: true
-    root = build_tree([5,4,8,11,0,13,4,7,2,0,0,0,1])
+    root = build_tree([5,4,8,11,None,13,4,7,2,None,None,None,1])
     assert s.hasPathSum(root, 22)
     root = build_tree([])
     assert not s.hasPathSum(root, 0)

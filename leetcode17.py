@@ -47,12 +47,13 @@ class Solution:
             for j in v:
                 self.backtrack(a[i+1:], b+j,c)
 
+    # pylint: disable-next=[invalid-name]
     def letterCombinations(self, digits: str) -> List[str]:
         init_list = [self.d2a_map[i] for i in digits]
         self.backtrack(init_list,'',len(digits))
         return self.acc
 
-def test()->None:    
+def test()->None:
     s=Solution()
     result=s.letterCombinations("23")
     print(result)
@@ -60,7 +61,7 @@ def test()->None:
     s=Solution()
     result = s.letterCombinations("")
     print(result)
-    assert result == []
+    assert not result
 
 if __name__ == "__main__":
     test()
