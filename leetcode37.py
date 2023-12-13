@@ -31,7 +31,8 @@ Output: [
     ["2","8","7","4","1","9","6","3","5"],
     ["3","4","5","2","8","6","1","7","9"]]
 '''
-from typing import TypeAlias, List, Optional
+from typing import TypeAlias, List, Optional, DefaultDict
+from collections import defaultdict
 
 Board:TypeAlias=List[List[str]]
 Index:TypeAlias=tuple[int,int,tuple[int,int]]
@@ -64,8 +65,7 @@ class Sudoku():
         self.constraint_rows = [set(i) for i in board]
         self.constraint_cols = \
             [{board[row][col] for row in range(9)} for col in range(9)]
-        self.constraint_sq:dict[tuple[int,int],set[str]] = \
-            {(row,col):set() for col in range(3) for row in range(3)}
+        self.constraint_sq:DefaultDict[tuple[int,int],set[str]] = defaultdict(set)
         i:Index = Index((0,0,(0,0)))
         while True:
             row,col,sq = i
