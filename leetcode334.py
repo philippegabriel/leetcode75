@@ -22,14 +22,14 @@ Example 3:
 Input: nums = [2,1,5,0,4,6]
 Output: true
 Explanation: The triplet (3, 4, 5) is valid because nums[3] == 0 < nums[4] == 4 < nums[5] == 6.'''
-from typing import List
+from typing import List, Optional, TYPE_CHECKING
 
 class Solution:
     # pylint: disable-next=[invalid-name, redefined-outer-name]
     def increasingTriplet(self, nums: List[int]) -> bool:
         #Create list of rightmost max values
         n = len(nums)
-        rightmax:List[int] = [0 for _ in range(n)]
+        rightmax:List[Optional[int]] = [None] * n
         max_val = nums[-1]
         for i in range(n-2,0,-1):
             max_val = max(max_val, nums[i+1])
@@ -39,6 +39,8 @@ class Solution:
         # Walk the list, maintain max left and check if current value is ok
         min_val = nums[0]
         for i,m in zip(nums[1:n],rightmax[1:n]):
+            if TYPE_CHECKING:
+                assert m
             if min_val < i < m:
                 #print(f'{min_val=} < {i=} < {m=}')
                 return True
