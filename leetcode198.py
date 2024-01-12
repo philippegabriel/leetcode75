@@ -43,11 +43,10 @@ class Solution:
 
 def test() -> None:
     s = Solution()
-    print(s.rob([1,2,3,1]))
-    print(s.rob([2,7,9,3,1]))
-    print(s.rob([1,2]))
-    s = Solution()
-    print(s.rob([1,7,9,2]))
-    
+    assert s.rob([1,2,3,1]) == 4
+    assert s.rob([2,7,9,3,1]) == 12
+    assert s.rob([1,2]) == 2
+    assert s.rob([1,7,9,2]) ==10
+  
 if __name__ == "__main__":
     test()
