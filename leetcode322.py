@@ -28,6 +28,10 @@ MAXAMOUNT=10001
 class Solution:
     # pylint: disable-next=invalid-name
     def coinChange(self, coins: List[int], amount: int) -> int:
+        return self.coinChangeIterative(coins, amount)
+    #Recursive Solution
+    # pylint: disable-next=invalid-name
+    def coinChangeRecursive(self, coins: List[int], amount: int) -> int:
         @cache
         def coin_change_rec(amount:int) -> int:
             nonlocal coins, min_coin
@@ -40,8 +44,23 @@ class Solution:
             return 1+min((coin_change_rec(amount-i) for i in coins))
         min_coin = min(coins)
         result = coin_change_rec(amount)
+        print(coin_change_rec.cache_info())
+        coin_change_rec.cache_clear()
         return -1 if result >= MAXAMOUNT else result
 
+    #Iterative solution
+    # pylint: disable-next=invalid-name
+    def coinChangeIterative(self, coins: List[int], amount: int) -> int:
+        mycache:list[int] = [MAXAMOUNT] * (amount+1)
+        mycache[0] = 0
+        for i in range(amount+1):
+            for j in coins:
+                x = i+j
+                if x <= amount:
+                    mycache[x] = min(mycache[x], mycache[i]+1)
+        print(mycache)
+        result = mycache[amount]
+        return -1 if  result == MAXAMOUNT else result
 def test() -> None:
     s=Solution()
     assert s.coinChange(coins = [1,2,5], amount = 11) == 3
