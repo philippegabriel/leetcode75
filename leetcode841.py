@@ -46,12 +46,27 @@ class Solution:
             discovered.extend(rooms[next_room])
         return len(visited) == len(rooms)
 
+    # pylint: disable-next=invalid-name
+    def canVisitAllRooms_rec(self, rooms: List[List[int]]) -> bool:
+        def visit_rec(indexes:set[int]) -> None:
+            nonlocal rooms, unvisited
+            for i in indexes:
+                if i in unvisited:
+                    unvisited.remove(i)
+                    visit_rec(set(rooms[i]))
+            return
+        unvisited=set(range(len(rooms)))
+        visit_rec({0})
+        return not bool(unvisited)
+
 def test() -> None:
     s=Solution()
     i = [[1],[2],[3],[]]
     assert s.canVisitAllRooms(i)
+    assert s.canVisitAllRooms_rec(i)
 
     i=[[1,3],[3,0,1],[2],[0]]
     assert not s.canVisitAllRooms(i)
+    assert not s.canVisitAllRooms_rec(i)
 if __name__ == "__main__":
     test()
