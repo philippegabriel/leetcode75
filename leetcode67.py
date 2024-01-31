@@ -17,13 +17,16 @@ class Solution:
             result = '1'+result
         return result
 
-    def addBinary(self, a: str, b: str) -> str:
+    def addBinaryFast(self, a: str, b: str) -> str:
         s=int(a,base=2)+int(b,base=2)
         result:str=''
         while s:
             result = str(s&1) + result
             s >>= 1
         return result if result else '0'
+
+    def addBinary(self, a: str, b: str) -> str:
+        return f'{(int(a,base=2)+int(b,base=2)):b}'
 
 def test() -> None:
     s=Solution()
