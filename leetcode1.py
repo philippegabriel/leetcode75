@@ -4,9 +4,21 @@
 from typing import List
 from bisect import bisect_left
 class Solution:
-    #0(n log n) solution
+    #0(n) solution
     # pylint: disable-next=invalid-name
     def twoSum(self, nums: List[int], target: int) -> List[int]:
+        seen:set[int] = set(nums)
+        for i,v in enumerate(nums):
+            t=target-v
+            if t in seen:
+                j = len(nums)-1-nums[::-1].index(t)
+                if i == j:
+                    continue
+                return [i,j]
+
+    #0(n log n) solution
+    # pylint: disable-next=invalid-name
+    def twoSum_bisect(self, nums: List[int], target: int) -> List[int]:
         def lookup(nums:List[int],index:int, a:int) -> int:
             'Locate the leftmost value exactly equal to x'
             i = bisect_left(nums, a)
