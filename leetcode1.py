@@ -1,5 +1,5 @@
 '''
-67. Add Binary
+1 Two Sum
 '''
 from typing import List
 from bisect import bisect_left
