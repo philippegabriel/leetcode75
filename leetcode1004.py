@@ -23,11 +23,11 @@ class Solution:
 
 def test() -> None:
     s=Solution()
-    print(s.longestOnes(nums = [], k = 2))
-    print(s.longestOnes(nums = [1,1,1,0,0,0,1,1,1,1,0], k = 2))
-    print(s.longestOnes(nums = [1,1,1,0,0,0,1,1,1,1,0], k = 0))
-    print(s.longestOnes(nums = [0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1], k = 3))
-    print(s.longestOnes(nums = [1]*100, k = 3))
+    assert s.longestOnes(nums = [], k = 2) == 0
+    assert s.longestOnes(nums = [1,1,1,0,0,0,1,1,1,1,0], k = 2) == 6
+    assert s.longestOnes(nums = [1,1,1,0,0,0,1,1,1,1,0], k = 0) == 4
+    assert s.longestOnes(nums = [0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1], k = 3) == 10
+    assert s.longestOnes(nums = [1]*100, k = 3) == 100
 
 if __name__ == "__main__":
     test()
