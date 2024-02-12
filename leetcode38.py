@@ -1,7 +1,15 @@
 '''
 38. Count and Say
 '''
+from itertools import groupby
 class Solution:
+    # pylint: disable-next=invalid-name
+    def countAndSay(self, n: int) -> str:
+        l:list[int]=[1]
+        for _ in range(1,n):
+            l=[x for (k,v) in groupby(l) for x in (len(list(v)),k)]
+        return ''.join((str(i) for i in l))
+
     def cs(self,inputlist:list[int])->list[int]:
         if len(inputlist) == 1:
             return [1]+inputlist
@@ -24,7 +32,7 @@ class Solution:
         return result
 
     # pylint: disable-next=invalid-name
-    def countAndSay(self, n: int) -> str:
+    def countAndSay_int_list(self, n: int) -> str:
         if n==1:
             return '1'
         else:
@@ -38,7 +46,7 @@ def test() -> None:
     sols=['1', '11', '21', '1211', '111221', '312211', '13112221']
     for i, sol in enumerate(sols):
         assert sol == s.countAndSay(i+1)
-        #print(f'{i=}->{s.countAndSay(i)=}')
+        #print(f'{i+1=}->{s.countAndSay(i+1)=}')
 
 if __name__ == "__main__":
     test()
